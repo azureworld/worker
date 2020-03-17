@@ -1,24 +1,29 @@
 package log
 
 import (
-	"github.com/azureworld/worker/api"
 	"log"
 	"os"
 )
+
+type Logger interface {
+	Println(v ...interface{})
+	Printf(format string, v ...interface{})
+	Print(v ...interface{})
+}
 
 var (
 	logger = log.New(os.Stdout, "", 1)
 
 	// DEBUG ...
-	DEBUG api.Logger = logger
+	DEBUG Logger = logger
 	// INFO ...
-	INFO api.Logger = logger
+	INFO Logger = logger
 	// WARNING ...
-	WARNING api.Logger = logger
+	WARNING Logger = logger
 	// ERROR ...
-	ERROR api.Logger = logger
+	ERROR Logger = logger
 	// FATAL ...
-	FATAL api.Logger = logger
+	FATAL Logger = logger
 )
 
 // Set sets a custom logger for all log levels
@@ -31,26 +36,26 @@ func Set(l *log.Logger) {
 }
 
 // SetDebug sets a custom logger for DEBUG level logs
-func SetDebug(l api.Logger) {
+func SetDebug(l Logger) {
 	DEBUG = l
 }
 
 // SetInfo sets a custom logger for INFO level logs
-func SetInfo(l api.Logger) {
+func SetInfo(l Logger) {
 	INFO = l
 }
 
 // SetWarning sets a custom logger for WARNING level logs
-func SetWarning(l api.Logger) {
+func SetWarning(l Logger) {
 	WARNING = l
 }
 
 // SetError sets a custom logger for ERROR level logs
-func SetError(l api.Logger) {
+func SetError(l Logger) {
 	ERROR = l
 }
 
 // SetFatal sets a custom logger for FATAL level logs
-func SetFatal(l api.Logger) {
+func SetFatal(l Logger) {
 	FATAL = l
 }

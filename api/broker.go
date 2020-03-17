@@ -29,9 +29,3 @@ type BrokerBuilder interface {
 	Schema() string
 	Build(url string) (Broker, error)
 }
-
-type Logger interface {
-	Println(v ...interface{})
-	Printf(format string, v ...interface{})
-	Print(v ...interface{})
-}
